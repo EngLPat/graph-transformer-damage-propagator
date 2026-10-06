@@ -1,0 +1,13 @@
+============================================================
+TEST RESULTS (autoregressive rollout)
+============================================================
+
+FI integrated (all)                 N=    489268  R²=+0.9796  RMSE=0.1271  MAE=0.0702
+FI integrated (final frame)         N=     14680  R²=+0.9049  RMSE=0.2051  MAE=0.1048
+damage ω (all)                      N=    489268  R²=+0.9767  RMSE=0.0601  MAE=0.0284
+
+============================================================
+
+Checkpoint: results/singleply/best_models/model_singleply_nl6_hd128.pt
+Stats: results/singleply/normalization_stats.pt
+Test samples: 3000

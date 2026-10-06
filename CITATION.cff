@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "Please cite the article below. Do not cite this repository."
+title: "Autoregressive Graph Transformers with Hybrid Local–Global Attention for Progressive Damage Evolution in Composite Laminates"
+authors:
+  - family-names: Patrignani
+    given-names: Luca
+    affiliation: Imperial College London
+  - family-names: Pinho
+    given-names: Silvestre T.
+    affiliation: Imperial College London
+preferred-citation:
+  type: article
+  title: "Autoregressive Graph Transformers with Hybrid Local–Global Attention for Progressive Damage Evolution in Composite Laminates"
+  authors:
+    - family-names: Patrignani
+      given-names: Luca
+      affiliation: Imperial College London
+    - family-names: Pinho
+      given-names: Silvestre T.
+      affiliation: Imperial College London
+  journal: "Computer Methods in Applied Mechanics and Engineering"
+  year: 2026
+  status: submitted

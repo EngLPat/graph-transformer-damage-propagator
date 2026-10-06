@@ -1,0 +1,13 @@
+============================================================
+TEST RESULTS (autoregressive rollout)
+============================================================
+
+FI integrated (all)                 N=  10910796  R²=+0.7160  RMSE=0.4548  MAE=0.1751
+FI integrated (final frame)         N=    327144  R²=+0.5970  RMSE=0.6873  MAE=0.3378
+damage ω (all)                      N=  10910796  R²=+0.5837  RMSE=0.2070  MAE=0.0606
+
+============================================================
+
+Checkpoint: results/alpha_0p1/best_models/model_alpha_0p1_nl9_hd128.pt
+Stats: results/alpha_0p1/normalization_stats.pt
+Test samples: 6000

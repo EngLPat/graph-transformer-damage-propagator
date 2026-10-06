@@ -1,0 +1,46 @@
+# Conda environment for the graph-transformer damage propagator.
+#
+#   conda env create -f environment.yml
+#   conda activate gtp
+#
+# The pinned versions are those used for the results in the paper: Linux x86_64,
+# Python 3.10, PyTorch 2.4.0 with CUDA 11.8, PyTorch Geometric 2.7.0 and
+# torch-scatter 2.1.2. The code has also been run with PyTorch 2.5.1 (CUDA 12.1)
+# and with PyTorch 2.13 on Linux aarch64.
+#
+# Other platforms: replace the two URLs in the pip section, keeping the
+# PyTorch version in the second one equal to the installed PyTorch.
+#   CPU only    https://download.pytorch.org/whl/cpu
+#               https://data.pyg.org/whl/torch-2.4.0+cpu.html
+#   CUDA 12.1   https://download.pytorch.org/whl/cu121
+#               https://data.pyg.org/whl/torch-2.4.0+cu121.html
+#   aarch64     PyPI has no torch-scatter wheel for this platform. Remove the pip
+#               section and add pytorch-gpu, pytorch_geometric and pytorch_scatter
+#               from conda-forge, creating the environment on a GPU node so that
+#               the CUDA builds are selected.
+
+name: gtp
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.10
+  - numpy=2.2.6
+  - pandas=2.3
+  - matplotlib=3.10
+  - pillow
+  - pyyaml
+  - rich
+  - tqdm
+  - opencv=4          # optional, video export of the rollout animations
+  - pip
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu118
+      - --find-links https://data.pyg.org/whl/torch-2.4.0+cu118.html
+      - torch==2.4.0
+      - torch-geometric==2.7.0
+      - torch-scatter==2.1.2
+      - scipy==1.15.3
+      - optuna==4.7.0     # hyperparameter search
+      - pyvista==0.48.2   # VTK output of the test rollouts

@@ -1,0 +1,13 @@
+============================================================
+TEST RESULTS (autoregressive rollout)
+============================================================
+
+FI integrated (all)                 N=  10910796  R²=+0.7210  RMSE=0.4508  MAE=0.1670
+FI integrated (final frame)         N=    327144  R²=+0.6320  RMSE=0.6568  MAE=0.2979
+damage ω (all)                      N=  10910796  R²=+0.5996  RMSE=0.2030  MAE=0.0579
+
+============================================================
+
+Checkpoint: results/laminate/best_models/model_laminate_nl9_hd128.pt
+Stats: results/laminate/normalization_stats.pt
+Test samples: 6000

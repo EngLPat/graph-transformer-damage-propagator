@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Editors and operating systems
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Logs and HPC job output
+logs/
+*.log
+*.out
+*.err
+slurm-*.out
+
+# Abaqus scratch and output files
+*.odb
+*.lck
+*.023
+*.abq
+*.com
+*.mdl
+*.msg
+*.pac
+*.prt
+*.res
+*.sel
+*.sim
+*.stt
+*.rec
+abaqus.rpy*
+*.o
+*.so
+
+# LaTeX build files
+*.aux
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.toc
+
+# Datasets are published separately and never committed
+data/raw/*/
+data/processed/*/
+data/interim/*/
+
+# Run outputs: the files that ship with the release are added explicitly
+results/
