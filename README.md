@@ -35,8 +35,8 @@ graph-transformer-damage-propagator/
 ├── tools/                     # analysis and figure scripts
 │   └── paper_analysis/        # scripts behind specific numbers of the paper
 ├── Subroutine/                # Abaqus user subroutine (see below)
-├── data/                      # datasets (downloaded or generated, not in git)
-└── results/                   # trained models and their test results
+├── data/                      # decks of the single-ply and extrapolation studies
+└── results/                   # trained models of the paper and their test results
 ```
 
 ## Requirements
@@ -221,10 +221,9 @@ repository) and write to `results/figures` by default.
 
 ## Trained models
 
-TODO: download instructions for the weights.
-
-Each run folder holds `config.yaml`, `normalization_stats.pt`, `best_models/` (weights and
-loss history) and `test_results/`.
+The weights of the 15 models of the paper are included in `results/`. Each run folder holds
+`config.yaml`, `normalization_stats.pt`, `best_models/` (weights and loss history) and
+`test_results/`.
 
 | Run | Model |
 |---|---|
