@@ -11,7 +11,7 @@ Extracts three fields at integration-point / centroidal level:
   - SDV_DMG_1       : matrix damage variable [0,1], C3D8R ply elements
   - SDEG            : scalar damage variable [0,1], COH3D8 interface elements
 
-The USDFLD subroutine (usdfld3d.f90) writes named SDVs (SDV_DMG_1, SDV_FI_1_Matrix, ...)
+The USDFLD subroutine writes named SDVs (SDV_DMG_1, SDV_FI_1_Matrix, ...)
 rather than the generic SDV1/SDV2/... numbering, so field names must match exactly.
 
 Element ordering is preserved from the ODB, aligned by element label.

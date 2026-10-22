@@ -10,7 +10,7 @@ cd "$(dirname "$0")/.."
 ROOT=$PWD
 STUDY=singleply
 PY=${PYTHON:-python}
-SUB=$ROOT/Subroutine/usdfld3d.f90
+SUB=$ROOT/Subroutine/libstandardU.so
 CPUS=${CPUS:-8}
 MAXP=${MAXP:-2}
 mkdir -p logs
@@ -22,7 +22,8 @@ run_one() {  # run_one <name>
     fi
     mkdir -p "$dir"; cd "$dir"
     cp -f "$ROOT/data/raw/$STUDY/geometry/$name.inp" .
-    abaqus job="$name" input="$name.inp" user="$SUB" cpus=$CPUS mp_mode=mpi \
+    echo "usub_lib_dir='$(dirname "$SUB")'" > abaqus_v6.env   # Abaqus loads the compiled USDFLD from there
+    abaqus job="$name" input="$name.inp" cpus=$CPUS mp_mode=mpi \
            double=both interactive > "$name.runlog" 2>&1 || true
     cd "$ROOT"
     echo "[$(date +%H:%M:%S)] $name $(grep -q SUCCESSFULLY "$dir/$name.sta" 2>/dev/null && echo OK || echo FAILED)"

@@ -360,7 +360,7 @@ def write_inp_cohesive(filepath, nodes_3d, elements_3d, coh_elements,
     ----------
     material_model : str
         ``"usdfld"``: custom USDFLD3D subroutine (CDM LaRC05, field-dependent
-        stiffness).  Requires ``user=usdfld3d.f90`` at run time.  No XFEM.
+        stiffness).  Requires the USDFLD subroutine at run time.  No XFEM.
         ``"elastic"``: purely elastic plies (no ply damage).  Useful for
         isolating the cohesive delamination response.
 

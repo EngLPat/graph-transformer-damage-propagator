@@ -4,7 +4,7 @@
 [![PyTorch 2.4](https://img.shields.io/badge/PyTorch-2.4-ee4c2c.svg)](https://pytorch.org/)
 [![License: BSD-3-Clause](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](LICENSE)
 
-<p align="center"><img src="./media/banner.png" alt="" width="80%"/></p>
+<p align="center"><img src="./media/banner.png" alt="" width="100%"/></p>
 
 **Paper:** "Autoregressive Graph Transformers with Hybrid Local–Global Attention for Progressive Damage Evolution in Composite Laminates"
 **Authors:** Luca Patrignani, Silvestre T. Pinho | Imperial College London
@@ -15,11 +15,11 @@ An autoregressive graph transformer that predicts the evolution of the matrix cr
 
 ```bibtex
 @article{patrignani2026autoregressive,
-  title={Autoregressive Graph Transformers with Hybrid Local--Global Attention for
-         Progressive Damage Evolution in Composite Laminates},
-  author={Patrignani, Luca and Pinho, Silvestre T.},
+  title={Autoregressive graph transformers with hybrid local--global attention for progressive damage evolution in composite laminates},
+  author={Patrignani, Luca and Pinho, Silvestre T},
   journal={Computer Methods in Applied Mechanics and Engineering},
-  year={2026}
+  year={2026},
+  publisher={Elsevier}
 }
 ```
 
@@ -34,7 +34,7 @@ graph-transformer-damage-propagator/
 ├── scripts/                   # Abaqus drivers and dataset recipes
 ├── tools/                     # analysis and figure scripts
 │   └── paper_analysis/        # scripts behind specific numbers of the paper
-├── Subroutine/                # Abaqus user subroutine (see below)
+├── Subroutine/                # Abaqus user subroutine
 ├── data/                      # decks of the single-ply and extrapolation studies
 └── results/                   # trained models of the paper and their test results
 ```
@@ -60,7 +60,9 @@ for CPU-only machines, CUDA 12.1 and Linux aarch64.
 
 ## Data
 
-TODO: dataset DOI and download instructions.
+The datasets are archived on Zenodo together with this code:
+https://doi.org/10.5281/zenodo.23560514. Each archive unpacks from the repository root into the
+layout below, e.g. `tar -xzf laminate.tar.gz`.
 
 | Dataset | Content |
 |---|---|
@@ -79,9 +81,17 @@ data/processed/<dataset>/<dataset>_dmgstate_dataset_uniform_dt0.01.pt     graph 
 
 ## Abaqus user subroutine
 
-The simulations use a USDFLD user subroutine for ply failure and damage.
+The simulations use a USDFLD user subroutine (LaRC05 failure criteria and continuum damage) for
+ply failure and damage. It is distributed in compiled form for Abaqus 2024 on Linux, in two
+equivalent builds:
 
-TODO: availability of the subroutine.
+- `Subroutine/libstandardU.so`, a user subroutine library that needs no Fortran compiler. The
+  scripts use it: each simulation folder gets an `abaqus_v6.env` that points Abaqus to
+  `Subroutine/`.
+- `Subroutine/usdfld3d.o`, an object file for installations with the Intel Fortran compiler,
+  passed with Abaqus's `user=` option.
+
+The material constants are read from the decks.
 
 ## Usage
 

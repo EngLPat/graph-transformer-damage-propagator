@@ -14,7 +14,7 @@ STUDY="${STUDY:-laminate}"
 N="${N:-400}"
 CPUS="${CPUS:-24}"
 MAXP="${MAXP:-2}"          # number of concurrent Abaqus jobs
-SUB="$ROOT/Subroutine/usdfld3d.f90"
+SUB="$ROOT/Subroutine/libstandardU.so"
 
 GEOM_DIR="$ROOT/data/raw/$STUDY/geometry"
 SIM_ROOT="$ROOT/data/raw/$STUDY/simulations"
@@ -44,8 +44,9 @@ run_one() {
         ln -s "$GEOM_DIR/$job.inp" "$sim_dir/$job.inp"
     fi
     cd "$sim_dir"
+    echo "usub_lib_dir='$(dirname "$SUB")'" > abaqus_v6.env   # Abaqus loads the compiled USDFLD from there
     echo "[$(date +%H:%M:%S)] BEGIN $job (pid $BASHPID)" | tee -a "$PROGRESS"
-    abaqus job="$job" input="$job" user="$SUB" cpus=$CPUS mp_mode=mpi interactive \
+    abaqus job="$job" input="$job" cpus=$CPUS mp_mode=mpi interactive \
         > "$job.stdout" 2> "$job.stderr"
     local rc=$?
     if [ $rc -eq 0 ]; then

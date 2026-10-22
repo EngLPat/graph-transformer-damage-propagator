@@ -15,7 +15,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
 CPUS="${CPUS:-24}"
-SUB="$ROOT/Subroutine/usdfld3d.f90"
+SUB="$ROOT/Subroutine/libstandardU.so"
 LOG_DIR="$ROOT/logs"
 PROGRESS="$LOG_DIR/run_extrap_onehole.log"
 STUDIES=(extrap_onehole_top extrap_onehole_bot)
@@ -42,8 +42,9 @@ run_one() {
         echo "[skip] $study: already has .odb" | tee -a "$PROGRESS"; return 0
     fi
     cd "$sim_dir"
+    echo "usub_lib_dir='$(dirname "$SUB")'" > abaqus_v6.env   # Abaqus loads the compiled USDFLD from there
     echo "[$(date +%H:%M:%S)] BEGIN $study" | tee -a "$PROGRESS"
-    abaqus job="$job" input="$job" user="$SUB" cpus=$CPUS mp_mode=mpi interactive \
+    abaqus job="$job" input="$job" cpus=$CPUS mp_mode=mpi interactive \
         > "$job.stdout" 2> "$job.stderr"
     local rc=$?
     if [ $rc -eq 0 ]; then

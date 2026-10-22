@@ -12,7 +12,7 @@
 #   --elem-size 0.90          the baseline mesh
 #   --sym-bc --direct-bc      the baseline boundary conditions (not exposed by
 #                             run_pipeline.py, so stage 1 calls the generator)
-#   Subroutine/usdfld3d.f90   the LaRC05 USDFLD subroutine (*Depvar 10)
+#   Subroutine/libstandardU.so  the compiled LaRC05 USDFLD subroutine (*Depvar 10)
 #
 # Resources: about 17,000 s of CPU per simulation on 8 threads (~37 h for 400
 # jobs at 6 in parallel) and about 105 GB of disk.
@@ -33,7 +33,7 @@ LAYUP="45,-45,0,90"
 PLY_THICKNESS=0.375
 YT_LO=51                # nominal 60 MPa, -15%
 YT_HI=69                # nominal 60 MPa, +15%
-USDFLD="Subroutine/usdfld3d.f90"
+USDFLD="Subroutine/libstandardU.so"
 
 cd "$PROJECT_DIR"
 for CONDA_SH in ~/miniconda3/etc/profile.d/conda.sh ~/anaconda3/etc/profile.d/conda.sh; do

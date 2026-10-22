@@ -52,3 +52,7 @@ data/interim/*/
 
 # Run outputs: the files that ship with the release are added explicitly
 results/
+
+# Compiled user subroutine distributed with the code
+!Subroutine/libstandardU.so
+!Subroutine/usdfld3d.o

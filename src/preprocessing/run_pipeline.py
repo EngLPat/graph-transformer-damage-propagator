@@ -91,7 +91,7 @@ def run_stage_1(n_samples, seed, layup=None, ply_thickness=None,
 def run_stage_2(dry_run=False, parallel=4, user_subroutine=None, **_):
     """Stage 2: Run ABAQUS simulations.
 
-    Pass ``user_subroutine`` (e.g. ``Subroutine/usdfld3d.f90``) for
+    Pass ``user_subroutine`` (e.g. ``Subroutine/libstandardU.so``) for
     LaRC05/USDFLD plyres datasets; without it Abaqus aborts at
     increment 1 with "USER SUBROUTINE USDFLD IS MISSING". For built-in
     damage models (no subroutine) leave ``user_subroutine=None``.
@@ -166,10 +166,11 @@ def main():
     )
     parser.add_argument(
         "--user-subroutine", type=str, default=None,
-        help="Stage 2: path to Fortran USDFLD subroutine (.f or .f90), "
-             "passed as Abaqus 'user=' option. REQUIRED for LaRC05 plyres "
+        help="Stage 2: USDFLD user subroutine, a compiled library (.so, loaded "
+             "through usub_lib_dir) or a source or object file (.f, .f90, .o, "
+             "passed as Abaqus 'user=' option). REQUIRED for LaRC05 plyres "
              "datasets; without it sims abort with 'USER SUBROUTINE USDFLD "
-             "IS MISSING'. Typical value: Subroutine/usdfld3d.f90.",
+             "IS MISSING'. Typical value: Subroutine/libstandardU.so.",
     )
     parser.add_argument(
         "--elem-size", type=float, default=None,

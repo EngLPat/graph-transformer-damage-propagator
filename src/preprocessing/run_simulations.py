@@ -99,7 +99,8 @@ def run_single_simulation(inp_file, simulations_dir, temp_dir, project_root,
     project_root : Path
         Repository root (used to catch stray ABAQUS files).
     user_subroutine : Path or None
-        Optional path to a Fortran user subroutine (.f or .f90).
+        Optional user subroutine: a compiled library (.so), loaded through
+        ``usub_lib_dir``, or a source or object file (.f, .f90, .o) passed via ``user=``.
 
     Returns
     -------
@@ -119,8 +120,12 @@ def run_single_simulation(inp_file, simulations_dir, temp_dir, project_root,
 
     try:
         print(f"  ▶ Starting: {job_name}", flush=True)
-        user_clause = (f' user="{Path(user_subroutine).resolve()}"'
-                       if user_subroutine else "")
+        user_clause = ""
+        if user_subroutine and Path(user_subroutine).suffix == ".so":
+            (job_temp_dir / "abaqus_v6.env").write_text(
+                f"usub_lib_dir = '{Path(user_subroutine).resolve().parent}'\n")
+        elif user_subroutine:
+            user_clause = f' user="{Path(user_subroutine).resolve()}"'
         command = (
             f'abaqus job={job_name} input="{inp_file.resolve()}"'
             f'{user_clause}'
@@ -260,7 +265,8 @@ def run_simulations(parallel=NUM_PARALLEL_JOBS, dry_run=False, jobs=None,
         If given, geometry is read from ``data/raw/geometry/<study>/``
         and results go to ``data/raw/simulations/<study>/``.
     user_subroutine : str or None
-        Path to a Fortran user subroutine (.f or .f90) passed via ``user=``.
+        User subroutine: a compiled library (.so), loaded through ``usub_lib_dir``,
+        or a source or object file (.f, .f90, .o) passed via ``user=``.
 
     Returns
     -------
@@ -460,7 +466,8 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--user-subroutine", type=str, default=None,
-        help="Path to Fortran user subroutine (.f or .f90) passed via user= to ABAQUS",
+        help="User subroutine: a compiled library (.so, loaded through usub_lib_dir) "
+             "or a source or object file (.f, .f90, .o, passed via user= to ABAQUS)",
     )
     args = parser.parse_args()
 
