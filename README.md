@@ -130,7 +130,7 @@ torchrun --nproc_per_node=2 --standalone -m src.gtp --mode train \
     --dataset data/processed/laminate/laminate_dmgstate_dataset_uniform_dt0.01.pt \
     --num-layers 9 --hidden-dim 128 --attention-freq 4 --dropout 0.00164 \
     --batch-size 8 --learning-rate 0.00019068 --weight-decay 2.5e-5 \
-    --rate-cap 0 --epochs 600 --two-stage --output-dir results/laminate
+    --rate-cap 0 --epochs 400 --two-stage --output-dir results/laminate
 
 # Single ply, one GPU
 python -m src.gtp --mode train \
