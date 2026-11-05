@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "Please cite the article below. Do not cite this repository."
-title: "Autoregressive Graph Transformers with Hybrid Local–Global Attention for Progressive Damage Evolution in Composite Laminates"
+title: "Autoregressive Graph Transformers with hybrid local–global attention for progressive damage evolution in composite laminates"
 authors:
   - family-names: Patrignani
     given-names: Luca
@@ -10,7 +10,7 @@ authors:
     affiliation: Imperial College London
 preferred-citation:
   type: article
-  title: "Autoregressive Graph Transformers with Hybrid Local–Global Attention for Progressive Damage Evolution in Composite Laminates"
+  title: "Autoregressive Graph Transformers with hybrid local–global attention for progressive damage evolution in composite laminates"
   authors:
     - family-names: Patrignani
       given-names: Luca
@@ -19,5 +19,7 @@ preferred-citation:
       given-names: Silvestre T.
       affiliation: Imperial College London
   journal: "Computer Methods in Applied Mechanics and Engineering"
-  year: 2026
-  status: in-press
+  volume: 464
+  start: 119539
+  year: 2027
+  doi: 10.1016/j.cma.2026.119539

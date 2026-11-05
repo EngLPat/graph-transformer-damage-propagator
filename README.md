@@ -6,7 +6,7 @@
 
 <p align="center"><img src="./media/banner.png" alt="" width="100%"/></p>
 
-**Paper:** "Autoregressive Graph Transformers with Hybrid Local–Global Attention for Progressive Damage Evolution in Composite Laminates"
+**Paper:** ["Autoregressive Graph Transformers with hybrid local–global attention for progressive damage evolution in composite laminates"](https://doi.org/10.1016/j.cma.2026.119539), *Computer Methods in Applied Mechanics and Engineering* 464 (2027) 119539
 **Authors:** Luca Patrignani, Silvestre T. Pinho | Imperial College London
 
 An autoregressive graph transformer that predicts the evolution of the matrix cracking failure index and of the corresponding damage variable in CFRP laminates. This repository contains the pipeline from parametric Abaqus decks to graph datasets, the training, testing and rollout code, and the scripts behind the results and figures of the paper.
@@ -14,11 +14,14 @@ An autoregressive graph transformer that predicts the evolution of the matrix cr
 ## Citation
 
 ```bibtex
-@article{patrignani2026autoregressive,
-  title={Autoregressive graph transformers with hybrid local--global attention for progressive damage evolution in composite laminates},
-  author={Patrignani, Luca and Pinho, Silvestre T},
+@article{patrignani2027autoregressive,
+  title={Autoregressive {Graph Transformers} with hybrid local--global attention for progressive damage evolution in composite laminates},
+  author={Patrignani, Luca and Pinho, Silvestre T.},
   journal={Computer Methods in Applied Mechanics and Engineering},
-  year={2026},
+  volume={464},
+  pages={119539},
+  year={2027},
+  doi={10.1016/j.cma.2026.119539},
   publisher={Elsevier}
 }
 ```
