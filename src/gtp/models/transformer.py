@@ -306,6 +306,15 @@ class FCLGA_GraphTransformer(nn.Module):
             dtype=torch.float32
         )
 
+        # One [current_time, delta_t] row per graph when the batch holds several graphs
+        batch = getattr(data, "batch", None)
+        n_graphs = int(batch.max().item()) + 1 if batch is not None and batch.numel() > 0 else 1
+        if n_graphs > 1:
+            time_features = torch.stack([
+                torch.as_tensor(data.current_time, dtype=torch.float32, device=x.device).reshape(-1).expand(n_graphs),
+                torch.as_tensor(data.delta_t, dtype=torch.float32, device=x.device).reshape(-1).expand(n_graphs),
+            ], dim=1)
+
         time_emb = None
         layer_outputs = [x]
 
@@ -314,7 +323,10 @@ class FCLGA_GraphTransformer(nn.Module):
             # Inject time at layer 3 (disabled by --no-time-injection)
             if self.time_injection_enabled and i == 3 and time_emb is None:
                 time_emb_single = self.time_encoder(time_features)
-                time_emb = time_emb_single.expand(num_nodes, -1)
+                if n_graphs > 1:
+                    time_emb = time_emb_single[batch]
+                else:
+                    time_emb = time_emb_single.expand(num_nodes, -1)
                 x_with_time = torch.cat([x, time_emb], dim=1)
                 x = self.time_projection(x_with_time)
             
